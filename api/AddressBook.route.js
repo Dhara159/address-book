@@ -47,8 +47,16 @@ addressBookRoutes.route('/update/:id').post(function (req, res) {
     if (!addressBook)
       res.status(404).send({ success: false, err });
     else {
-      addressBook.title = req.body.title;
-      addressBook.body = req.body.body;
+      const { firstName, lastName, email, phoneNumber, notes, dob } = req.body;
+      addressBook.firstName = firstName;
+      addressBook.lastName = lastName;
+      addressBook.email = email;
+      addressBook.phoneNumber = phoneNumber;
+      addressBook.notes = notes;
+      addressBook.dob = dob
+
+      // addressBook.title = req.body.title;
+      // addressBook.body = req.body.body;
       addressBook.save().then(() => {
         res.json({ success: true, message: 'Updated Successfully' });
       })

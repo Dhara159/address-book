@@ -1,0 +1,21 @@
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.form-group--error {
+
+  input {
+    border-color: #f04124;
+  }
+  animation-name: shakeError;
+  animation-fill-mode: forwards;
+  animation-duration: .6s;
+  animation-timing-function: ease-in-out;
+}
+
+.error {
+  color: #f04124;
+}

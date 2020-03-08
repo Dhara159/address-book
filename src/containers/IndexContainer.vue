@@ -46,25 +46,23 @@
 </template>
 
 <script>
+
+import { fetchAllAddresses, deleteAddressBook } from './../utils';
+
 export default {
   data() {
     return {
       addressBooks: []
     };
   },
-  created() {
-    let uri = "http://localhost:4000/addressBooks";
-    this.axios.get(uri).then(response => {
-      this.addressBooks = response.data.data;
-    });
+  async created() {
+    const addressBooks = await fetchAllAddresses();
+    this.addressBooks = addressBooks || [];
   },
   methods: {
-      deleteAddressBook(id)
-      {
-        let uri = `http://localhost:4000/addressBooks/delete/${id}`;
-        this.axios.delete(uri).then(() => {
-          this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
-        });
+      deleteAddressBook: async function(id) {
+        const isDeleteSuccess = await deleteAddressBook(id);
+        if(isDeleteSuccess) this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
       }
     }
 };
