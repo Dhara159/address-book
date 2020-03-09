@@ -1,10 +1,8 @@
-// AddressBook.model.js
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-// Define collection and schema for Address Book
-let addressBook = new Schema({
+// Define colection and schema for Address book
+const addressBook = new Schema({
   id: {
     type: Number
   },
@@ -30,4 +28,7 @@ let addressBook = new Schema({
     collection: 'address_book'
 });
 
-module.exports = mongoose.model('addressBook', addressBook);
+// Object to be used to interact with model
+const addressBookModel = mongoose.model('addressBook', addressBook);
+
+export default addressBookModel;

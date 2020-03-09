@@ -21,7 +21,7 @@ const routes = [
   },
   {
     name: 'addressBooks',
-    path: '/addressBooks',
+    path: '/addressBook',
     component: IndexContainer
   },
   {
