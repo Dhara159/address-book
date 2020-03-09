@@ -29,26 +29,26 @@
       </div>
     </div>
     <div class="modals">
-      <modal-component
+      <Modal
         v-on:dataUpdate="hideFormModal"
         v-bind:isUpdate="!newAddress"
         v-bind:addressBook="addressToBeUpdated"
         v-if="showFormModal === true"
       />
-      <error-modal-component v-on:showErrorModal="hideErrorModal" v-if="showErrorModal === true" />
+      <ErrorModal v-on:showErrorModal="hideErrorModal" v-if="showErrorModal === true" />
     </div>
   </div>
 </template>
 
 <script>
 import IMAGES from "./../../static/images";
-import ModalComponent from "./../ModalComponent/ModalComponent";
-import ErrorModalComponent from "./../../components/ModalComponent/ErrorModalComponent";
+import Modal from "./../Modal/Modal";
+import ErrorModal from "./../Modal/ErrorModal";
 import { fetchAddressById, deleteAddressById } from "./../../utils";
 
 export default {
-  name: "CardComponent",
-  components: { ModalComponent, ErrorModalComponent },
+  name: "Card",
+  components: { Modal, ErrorModal },
   data() {
     return {
       images: IMAGES,
@@ -109,5 +109,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./CardComponent.scss";
+@import "./Card.scss";
 </style>

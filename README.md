@@ -1,4 +1,4 @@
-# vue-crud
+# Addressbook
 
 ## Project setup
 ```

@@ -1,10 +1,11 @@
+$bg: #FFFFFF;
+$red:#F04124;
+$transp:rgba(0,0,0,0.03);
+
 @mixin animateContainer {
   -webkit-transform: scale(1.1);
   transform: scale(1.1)
 }
-
-$red:#f04124;
-$transp:rgba(0,0,0,0.03);
 
 .modal-mask {
   position: fixed;
@@ -25,7 +26,7 @@ $transp:rgba(0,0,0,0.03);
       width: 45%;
       margin: 0px auto;
       padding: 20px 30px;
-      background-color: #fff;
+      background-color: $bg;
       border-radius: 5px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
       transition: all 0.3s ease;
@@ -49,7 +50,7 @@ $transp:rgba(0,0,0,0.03);
 
           :hover, :active {
             color: rgba(0, 0, 0, 0.8);
-            background-color: #fff;
+            background-color: $bg;
             border: 0.5px solid rgba(0, 0, 0, 0.8);
             transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
           }

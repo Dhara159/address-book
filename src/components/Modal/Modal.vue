@@ -15,26 +15,26 @@
             <form id="createContainer" @submit.prevent="addOrUpdateAddress" novalidate>
               <div class="row">
                 <div class="col-md-6">
-                  <firstname-component v-model="firstName" :v="$v.firstName" />
+                  <Firstname v-model="firstName" :v="$v.firstName" />
                 </div>
                 <div class="col-md-6">
-                  <lastname-component v-model="lastName" :v="$v.lastName" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <email-component v-model="email" :v="$v.email" />
-                </div>
-                <div class="col-md-6">
-                  <phonenumber-component v-model="phoneNumber" :v="$v.phoneNumber" />
+                  <Lastname v-model="lastName" :v="$v.lastName" />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <notes-component v-model="notes" :v="$v.notes" />
+                  <Email v-model="email" :v="$v.email" />
                 </div>
                 <div class="col-md-6">
-                  <date-component v-model="dob" />
+                  <Phonenumber v-model="phoneNumber" :v="$v.phoneNumber" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <Notes v-model="notes" :v="$v.notes" />
+                </div>
+                <div class="col-md-6">
+                  <Date v-model="dob" />
                 </div>
               </div>
               <br />
@@ -58,21 +58,21 @@
 <script>
 import validations from "./../../validator";
 import { addAddress, updateAddressById } from "./../../utils";
-import FirstnameComponent from "./../FirstnameComponent/FirstnameComponent";
-import LastnameComponent from "./../LastnameComponent/LastnameComponent";
-import EmailComponent from "./../EmailComponent/EmailComponent";
-import PhonenumberComponent from "./../PhonenumberComponent/PhonenumberComponent";
-import NotesComponent from "./../NotesComponent/NotesComponent";
-import DateComponent from "./../DateComponent/DateComponent";
+import Firstname from "./../Firstname";
+import Lastname from "./../Lastname";
+import Email from "./../Email";
+import Phonenumber from "./../Phonenumber";
+import Notes from "./../Notes";
+import Date from "./../Date";
 export default {
-  name: "ModalComponent",
+  name: "Modal",
   components: {
-    FirstnameComponent,
-    LastnameComponent,
-    EmailComponent,
-    PhonenumberComponent,
-    NotesComponent,
-    DateComponent
+    Firstname,
+    Lastname,
+    Email,
+    Phonenumber,
+    Notes,
+    Date
   },
   props: {
     addressBook: {
@@ -139,5 +139,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./ModalComponent.scss";
+@import "./Modal.scss";
 </style>

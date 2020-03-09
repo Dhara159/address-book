@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router';
 import Vue from 'vue';
 
-import IndexContainer from './../containers/IndexContainer/IndexContainer';
+import Index from './../containers/Index';
 
 Vue.use(VueRouter);
 
@@ -9,7 +9,7 @@ const routes = [
   {
     name: 'home',
     path: '/',
-    component: IndexContainer
+    component: Index
   }
 ];
 

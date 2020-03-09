@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "ErrorModalComponent",
+  name: "ErrorModal",
   created() {
     setTimeout(() => {
       this.$emit("showErrorModal", false);
@@ -27,6 +27,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./ModalComponent.scss";
-@import "./ErrorModalComponent.scss";
+@import "./Modal.scss";
+@import "./ErrorModal.scss";
 </style>

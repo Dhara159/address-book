@@ -7,9 +7,9 @@
     </div>
     <br />
     <div class="card-list">
-      <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress="true" />
+      <Card v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress="true" />
       <div v-for="address in addressBook" :key="address._id">
-        <CardComponent
+        <Card
           v-on:refetchData="fetchAllAddresses"
           v-bind:isNewAddress="false"
           v-bind:addressBook="address"
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <error-modal-component
+      <ErrorModal
         v-on:showErrorModal="hideErrorModal"
         v-if="showErrorModal === true"
       />
@@ -27,11 +27,11 @@
 
 <script>
 import { fetchAllAddresses } from "./../../utils";
-import CardComponent from "./../../components/CardComponent/CardComponent";
-import ErrorModalComponent from "./../../components/ModalComponent/ErrorModalComponent";
+import Card from "./../../components/Card";
+import ErrorModal from "./../../components/Modal/ErrorModal";
 
 export default {
-  components: { CardComponent, ErrorModalComponent },
+  components: { Card, ErrorModal },
   data() {
     return {
       addressBook: [],
@@ -55,5 +55,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./IndexContainer.scss";
+@import "./Index.scss";
 </style>
