@@ -1,5 +1,4 @@
 import axios from 'axios';
-import router from './router'
 
 const addAddressBook = async ({ v, userData }) => {
   v.$touch();
@@ -9,9 +8,7 @@ const addAddressBook = async ({ v, userData }) => {
 
   let uri = "http://localhost:4000/addressBooks/add";
 
-  const res = await axios.post(uri, userData);
-  if (res.status === 200) router.push({ name: "home" });
-  else alert("Something went wrong");
+  await axios.post(uri, userData);
 }
 
 const fetchAddressToEdit = async ({ id }) => {
@@ -29,7 +26,6 @@ const updateAddressBook = async ({ v, userData, id }) => {
 
   const uri = `http://localhost:4000/addressBooks/update/${id}`;
   await axios.post(uri, userData)
-  router.push({ name: "addressBooks" });
 }
 
 const fetchAllAddresses = async () => {

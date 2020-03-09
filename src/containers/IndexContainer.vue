@@ -1,55 +1,26 @@
-// IndexComponent.js
-
 <template>
   <div>
-    <h1>Address Book</h1>
-    <div class="row">
-      <div class="col-md-10"></div>
-      <div class="col-md-2">
-        <router-link :to="{ name: 'create' }" class="btn btn-primary">Create Address</router-link>
-      </div>
+    <div class="pen-title">
+      <center>
+        <h1>MY PEOPLES</h1>
+      </center>
     </div>
     <br />
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Notes</th>
-          <th>Date of Birth</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="addressBook in addressBooks" :key="addressBook._id">
-          <td>{{ addressBook.firstName }}</td>
-          <td>{{ addressBook.lastName }}</td>
-          <td>{{ addressBook.email }}</td>
-          <td>{{ addressBook.phoneNumber }}</td>
-          <td>{{ addressBook.notes }}</td>
-          <td>{{ addressBook.dob }}</td>
-          <td>
-            <router-link
-              :to="{name: 'edit', params: { id: addressBook._id }}"
-              class="btn btn-primary"
-            >Edit</router-link>
-          </td>
-          <td>
-            <button class="btn btn-danger" @click.prevent="deleteAddressBook(addressBook._id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card-list">
+      <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress=true />
+      <div v-for="addressBook in addressBooks" :key="addressBook._id">
+        <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress=false v-bind:addressBook="addressBook" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
-import { fetchAllAddresses, deleteAddressBook } from './../utils';
+import { fetchAllAddresses, deleteAddressBook } from "./../utils";
+import CardComponent from "./../components/CardComponent";
 
 export default {
+  components: { CardComponent },
   data() {
     return {
       addressBooks: []
@@ -60,10 +31,34 @@ export default {
     this.addressBooks = addressBooks || [];
   },
   methods: {
-      deleteAddressBook: async function(id) {
-        const isDeleteSuccess = await deleteAddressBook(id);
-        if(isDeleteSuccess) this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
-      }
+    deleteAddressBook: async function(id) {
+      const isDeleteSuccess = await deleteAddressBook(id);
+      if (isDeleteSuccess)
+        this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
+    },
+    fetchAllAddresses: async function() {
+      const addressBooks = await fetchAllAddresses();
+      this.addressBooks = addressBooks || [];
     }
+  }
 };
 </script>
+
+<style lang="sass" scoped>
+.card-list
+  width: 85vw
+  margin: 0 auto
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  grid-gap: 20px
+
+.pen-title
+  padding: 50px 0 0 0
+  text-align: center
+  letter-spacing: 2px
+
+  h1
+    margin: 0 0 20px
+    font-size: 48px
+    font-weight: 300
+</style>

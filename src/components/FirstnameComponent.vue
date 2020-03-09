@@ -10,11 +10,11 @@
       required
     />
     <div v-if="v.$error">
-      <div class="error" v-if="!v.required">Field is required</div>
-      <div
+      <span class="error" v-if="!v.required">Field is required</span>
+      <span
         class="error"
         v-if="!v.minLength"
-      >Firstname must have at least {{v.$params.minLength.min}} letters.</div>
+      >Firstname must have at least {{v.$params.minLength.min}} letters.</span>
     </div>
   </div>
 </template>

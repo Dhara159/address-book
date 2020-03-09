@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Add new address</h1>
     <form id="createContainer" @submit.prevent="addAddressBook" novalidate>
       <div class="row">
         <div class="col-md-6">

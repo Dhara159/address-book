@@ -1,11 +1,10 @@
 <template>
   <div class="form-group" :class="{ 'form-group--error': v.$error }">
     <label for="notes">Notes:</label>
-    <textarea id="notes" class="form-control" name="notes" v-model.trim="v.$model" rows="5" />
-    <div
-      class="error"
-      v-if="v.$error && !v.maxLength"
-    >Maximum number of allowed character exceeded</div>
+    <textarea id="notes" class="form-control" name="notes" v-model.trim="v.$model" rows="3" />
+    <div v-if="v.$error">
+      <span class="error" v-if="!v.maxLength">Maximum number of allowed character exceeded</span>
+    </div>
   </div>
 </template>
 

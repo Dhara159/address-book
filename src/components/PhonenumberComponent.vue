@@ -9,10 +9,9 @@
       v-model.trim="v.$model"
       required
     />
-    <div
-      class="error"
-      v-if="v.$error && !v.validNumber"
-    >Phone number is invalid</div>
+    <div v-if="v.$error">
+      <span class="error" v-if="!v.validNumber">Phone number is invalid</span>
+    </div>
   </div>
 </template>
 

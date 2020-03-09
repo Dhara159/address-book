@@ -1,5 +1,3 @@
-// AddressBook.model.js
-
 const express = require('express');
 const addressBookRoutes = express.Router();
 
@@ -20,7 +18,7 @@ addressBookRoutes.route('/add').post(function (req, res) {
 
 // Defined get data(index or listing) route
 addressBookRoutes.route('/').get(function (req, res) {
-  AddressBook.find(function (err, addressBooks) {
+  AddressBook.find({}).sort({_id: -1}).exec(function (err, addressBooks) {
     if (err) {
       res.json({ success: false, err });
     }
@@ -54,9 +52,6 @@ addressBookRoutes.route('/update/:id').post(function (req, res) {
       addressBook.phoneNumber = phoneNumber;
       addressBook.notes = notes;
       addressBook.dob = dob
-
-      // addressBook.title = req.body.title;
-      // addressBook.body = req.body.body;
       addressBook.save().then(() => {
         res.json({ success: true, message: 'Updated Successfully' });
       })

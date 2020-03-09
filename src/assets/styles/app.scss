@@ -1,12 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+$bg: #DAF0EE;
+$text: #777;
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+}
+
+body {
+  color: $text;
+  background: rgba(219, 240, 238, 0.5);
+  align-items: center;
+  justify-content: center;
+  text-rendering: optimizeLegibility;
 }
 
 .form-group--error {
-
   input {
     border-color: #f04124;
   }
@@ -17,5 +28,9 @@
 }
 
 .error {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.0525rem;
+  padding: 0 0 0.25rem 0;
   color: #f04124;
 }
