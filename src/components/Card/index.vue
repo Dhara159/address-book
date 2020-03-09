@@ -8,23 +8,27 @@
         <article v-if="newAddress === false" class="card">
           <img class="card-image" :src="images[Math.floor(Math.random() * Math.floor(29))]" />
           <div class="article-details">
-            <h3 class="card-name">{{ addressBook.firstName }} {{ addressBook.lastName }}</h3>
-            <p class="card-number">{{ addressBook.phoneNumber }}</p>
-            <h4 class="card-email">{{ addressBook.email }}</h4>
-            <h4 class="card-notes">ABOUT: {{ addressBook.notes }}</h4>
+            <div>
+              <button class="card-button">
+                <i
+                  class="material-icons card-edit"
+                  aria-hidden="true"
+                  v-on:click="fetchAddressById(addressBook._id)"
+                >create</i>
+                <span
+                  class="material-icons card-delete"
+                  aria-hidden="true"
+                  v-on:click="deleteAddressById(addressBook._id)"
+                ></span>
+              </button>
+            </div>
+            <div>
+              <h3 class="card-name">{{ addressBook.firstName }} {{ addressBook.lastName }}</h3>
+              <p class="card-number">{{ addressBook.phoneNumber }}</p>
+              <h4 class="card-email">{{ addressBook.email }}</h4>
+              <h4 class="card-notes">ABOUT: {{ addressBook.notes }}</h4>
+            </div>
           </div>
-          <button class="card-button">
-            <i
-              class="material-icons card-edit"
-              aria-hidden="true"
-              v-on:click="fetchAddressById(addressBook._id)"
-            >create</i>
-            <span
-              class="material-icons card-delete"
-              aria-hidden="true"
-              v-on:click="deleteAddressById(addressBook._id)"
-            ></span>
-          </button>
         </article>
       </div>
     </div>
