@@ -1,8 +1,9 @@
 import { sendErrorResponse } from './../utils.mjs'
 
-const handleError = ({ tryFunc, res }) => {
+// Basic error handler to generalize try/catch block
+const handleError = async ({ tryFunc, res }) => {
   try {
-    tryFunc();
+    await tryFunc();
   } catch {
     return sendErrorResponse({ res });
   }

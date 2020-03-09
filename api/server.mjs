@@ -10,7 +10,7 @@ import addressBookRoutes from './AddressBook.route.mjs';
 
 // dotenv.config()
 const app = express();
-const PORT = process.env.PORT || 4000;
+const { PORT = 4000, DB, RECONNECT_TRIES, RECONNECT_INTERVAL } = process.env;
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,11 +22,11 @@ app.use('/addressBook', addressBookRoutes);
 // ☞ Database connection config
 mongoose.Promise = global.Promise;
 const run = async () => {
-  await mongoose.connect(process.env.DB, {
+  await mongoose.connect(DB, {
     useNewUrlParser: true,
     autoReconnect: true,
-    reconnectTries: process.env.RECONNECT_TRIES,
-    reconnectInterval: process.env.RECONNECT_INTERVAL
+    reconnectTries: RECONNECT_TRIES,
+    reconnectInterval: RECONNECT_INTERVAL
   })
 };
 

@@ -1,3 +1,4 @@
+// After removing multiple pages, there is no need of VueRouter! Not removing the code because of future use purpose
 import VueRouter from 'vue-router';
 import Vue from 'vue';
 

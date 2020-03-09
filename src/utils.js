@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.VUE_APP_ROOT_API;
+const {VUE_APP_ROOT_API : BASE_URL} = process.env;
 
 export const addAddress = async ({ v, userData }) => {
   v.$touch();
