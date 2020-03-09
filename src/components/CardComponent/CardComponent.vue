@@ -19,11 +19,11 @@
               aria-hidden="true"
               v-on:click="fetchAddressById(addressBook._id)"
             >create</i>
-            <i
+            <span
               class="material-icons card-delete"
               aria-hidden="true"
               v-on:click="deleteAddressById(addressBook._id)"
-            >🚫</i>
+            ></span>
           </button>
         </article>
       </div>
@@ -82,7 +82,7 @@ export default {
     fetchAddressById: async function(id) {
       const { address } = await fetchAddressById({ id });
       this.addressToBeUpdated = address;
-      this.showModal = true;
+      this.enableShowModal();
     },
     deleteAddressById: async function(id) {
       const isDeleteSuccess = await deleteAddressById({ id });

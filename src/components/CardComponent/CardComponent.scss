@@ -12,6 +12,7 @@ $button: #bbb;
 $hoverColor: #ff7f50;
 $iconBorder: #1E152A;
 $bigPlus: '\FF0B';
+$delete: '\01F6AB';
 
 @mixin transition($args...) {
   transition: $args;
@@ -160,9 +161,6 @@ $bigPlus: '\FF0B';
   right: .3em;
   top: .3em;
 
-  > .material-icons {
-    font-size: inherit;
-  }
 }
 
 .card-button[disabled] {
@@ -172,6 +170,8 @@ $bigPlus: '\FF0B';
 }
 
 .card-edit {
+  font-size: inherit;
+
   &:hover,
   &:focus {
     color: $hoverColor;
@@ -179,8 +179,11 @@ $bigPlus: '\FF0B';
 }
 
 .card-delete {
-  font-size: x-small;
-  padding: inherit;
+  font-size: small;
+  margin: 0px 0px 0px 5px;
+  &:before {
+    content: $delete
+  }
 }
 
 .card-expander {
