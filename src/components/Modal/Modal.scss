@@ -23,7 +23,7 @@ $transp:rgba(0,0,0,0.03);
     vertical-align: middle;
 
     .modal-container {
-      width: 45%;
+      width: 55%;
       margin: 0px auto;
       padding: 20px 30px;
       background-color: $bg;
@@ -62,6 +62,15 @@ $transp:rgba(0,0,0,0.03);
 
         &:after {
           content: "✖︎";
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 75%;
+
+        .ghost-button {
+          float: center;
+          flex: auto;
         }
       }
     }

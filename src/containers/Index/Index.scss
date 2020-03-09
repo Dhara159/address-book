@@ -4,6 +4,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
+
+  // For tablet
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  // For mobile
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr
+  }
 }
 
 .pen-title {

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 $black: #121212;
 $white: #fff;
@@ -8,13 +8,24 @@ $border: #ebebeb;
 $shadow: rgba(0, 0, 0, 0.2);
 $button: #bbb;
 $hoverColor: #ff7f50;
-$iconBorder: #1E152A;
-$bigPlus: '\FF0B';
-$delete: '\01F6AB';
+$iconBorder: #1e152a;
+$bigPlus: "\FF0B";
+$delete: "\01F6AB";
 $weight: 700;
 
 @mixin transition($args...) {
   transition: $args;
+}
+
+@mixin cartButton {
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  user-select: none;
+  background: transparent;
+  border-radius: 3px;
+  color: $button;
 }
 
 #card-container {
@@ -29,10 +40,9 @@ $weight: 700;
   transition: transform 0.25s ease-out;
 
   &:hover {
-    transform: perspective(1px) scale(1.05)
+    transform: perspective(1px) scale(1.05);
   }
 }
-
 
 .card {
   display: flex;
@@ -62,7 +72,7 @@ $weight: 700;
   @include transition(opacity 0.3s ease);
   display: block;
   width: 100%;
-	object-fit: cover;
+  object-fit: cover;
 }
 
 .article-details {
@@ -94,27 +104,77 @@ $weight: 700;
   border-bottom: 2px solid $border;
 }
 
-.post-author {
-  font-size: 14px;
-  line-height: 1;
-  margin: 18px 0 0 0;
-  padding: 18px 0 0 0;
-  border-top: 1px solid $border;
+.card-button {
+  @media (min-width: 769px) {
+    @include cartButton();
+    color: $button;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
 }
 
-@media (max-width: 640px) {
-  #container {
-    width: 288px;
-    height: 436px;
-  }
+.card-button[disabled] {
+  cursor: stop;
+  opacity: 0.6;
+  pointer-events: none;
+}
 
+.card-edit {
+  font-size: inherit;
+
+  &:hover,
+  &:focus {
+    color: $hoverColor;
+  }
+}
+
+.card-delete {
+  font-size: smaller;
+  margin: 0px 0px 0px 5px;
+  &:before {
+    content: $delete;
+  }
+}
+
+#wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  text-align: center;
+  background-color: #91a8a4;
+}
+
+.icon:before {
+  content: "";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid $iconBorder;
+  font-size: 40px;
+  color: $iconBorder;
+}
+
+#bigplus:before {
+  content: $bigPlus;
+}
+
+@media (max-width: 768px) {
   .card {
     flex-wrap: wrap;
+  }
+  .card-button {
+    @include cartButton();
+    justify-content: center;
+    padding: 0px 0px 10px 0px;
   }
 }
 
 @supports (display: grid) {
-
   body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -138,75 +198,10 @@ $weight: 700;
     grid-template-rows: 1fr;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .card {
       grid-template-columns: auto;
       grid-template-rows: 192px 1fr;
     }
   }
-}
-
-.card-button {
-  align-items: center;
-  border: 0;
-  cursor: pointer;
-  display: flex;
-  user-select: none;
-  background: transparent;
-  border-radius: 3px;
-  color: $button;
-  padding: 3px;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-
-}
-
-.card-button[disabled] {
-  cursor: stop;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.card-edit {
-  font-size: inherit;
-
-  &:hover,
-  &:focus {
-    color: $hoverColor;
-  }
-}
-
-.card-delete {
-  font-size: small;
-  margin: 0px 0px 0px 5px;
-  &:before {
-    content: $delete
-  }
-}
-
-#wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 150px;
-  text-align: center;
-  background-color: #91A8A4;
-}
-
-.icon:before {
-  content: '';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 3px solid $iconBorder;
-  font-size: 40px;
-  color: $iconBorder;
-}
-
-#bigplus:before {
-  content: $bigPlus;
 }
