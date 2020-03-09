@@ -3,11 +3,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
+// import dotenv from 'dotenv'
 
 // ☞ Custom import
-import DB from './DB.mjs';
 import addressBookRoutes from './AddressBook.route.mjs';
 
+// dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -21,11 +22,11 @@ app.use('/addressBook', addressBookRoutes);
 // ☞ Database connection config
 mongoose.Promise = global.Promise;
 const run = async () => {
-  await mongoose.connect(DB, {
+  await mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     autoReconnect: true,
-    reconnectTries: 1000000,
-    reconnectInterval: 3000
+    reconnectTries: process.env.RECONNECT_TRIES,
+    reconnectInterval: process.env.RECONNECT_INTERVAL
   })
 };
 
