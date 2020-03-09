@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router';
 import Vue from 'vue';
 
-import IndexContainer from './../containers/IndexContainer';
+import IndexContainer from './../containers/IndexContainer/IndexContainer';
 
 Vue.use(VueRouter);
 

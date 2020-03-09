@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-const addAddressBook = async ({ v, userData }) => {
+const fetchAllAddresses = async () => {
+  let uri = "http://localhost:4000/addressBook";
+  const res = await axios.get(uri);
+  console.log("fetchAllAddresses -> res", res)
+  if (res.status === 200) return res.data;
+  return false;
+}
+
+const addAddress = async ({ v, userData }) => {
   v.$touch();
   if (v.$invalid) {
     return;
@@ -9,30 +17,24 @@ const addAddressBook = async ({ v, userData }) => {
   return await axios.post(uri, userData);
 }
 
-const fetchAddressToEdit = async ({ id }) => {
+const fetchAddressById = async ({ id }) => {
   const uri = `http://localhost:4000/addressBook/edit/${id}`;
   const res = await axios.get(uri);
   if (res.status === 200) return res.data;
   else alert("Something went wrong");
 }
 
-const updateAddressBook = async ({ v, userData, id }) => {
+const updateAddressById = async ({ v, userData, id }) => {
   v.$touch();
   if (v.$invalid) {
     return;
   }
 
   const uri = `http://localhost:4000/addressBook/update/${id}`;
-  await axios.post(uri, userData)
+  return await axios.post(uri, userData)
 }
 
-const fetchAllAddresses = async () => {
-  let uri = "http://localhost:4000/addressBook";
-  const res = await axios.get(uri);
-  if (res.status === 200) return res.data;
-}
-
-const deleteAddressBook = async ({ id }) => {
+const deleteAddressById = async ({ id }) => {
   let uri = `http://localhost:4000/addressBook/delete/${id}`;
   const res = await axios.delete(uri);
   if (res.status === 200) return true;
@@ -40,4 +42,4 @@ const deleteAddressBook = async ({ id }) => {
   return false;
 }
 
-export { addAddressBook, fetchAddressToEdit, updateAddressBook, fetchAllAddresses, deleteAddressBook };
+export { addAddress, fetchAddressById, updateAddressById, fetchAllAddresses, deleteAddressById };

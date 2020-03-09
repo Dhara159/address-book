@@ -1,0 +1,32 @@
+@mixin animateContainer {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1)
+}
+
+$red:#E91E63;
+$transp:rgba(0,0,0,0.03);
+$bigWarning: '\26A0';
+$iconBorder: #1E152A;
+
+.modal-container {
+  width: 30% !important;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+}
+
+#bigWarning:before {
+  content: $bigWarning;
+}
+
+.icon:before {
+  content: '';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: $iconBorder;
+}

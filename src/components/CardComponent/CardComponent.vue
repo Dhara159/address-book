@@ -2,27 +2,27 @@
   <div>
     <div id="card-container">
       <div class="card-link">
-        <div v-if="newAddress === true" v-on:click="enableShowModal()" class="blog-card" id="wrap">
+        <div v-if="newAddress === true" v-on:click="enableShowModal()" class="card" id="wrap">
           <div class="icon" id="bigplus"></div>
         </div>
-        <article v-if="newAddress === false" class="blog-card">
-          <img class="post-image" :src="images[Math.floor(Math.random() * Math.floor(29))]" />
+        <article v-if="newAddress === false" class="card">
+          <img class="card-image" :src="images[Math.floor(Math.random() * Math.floor(29))]" />
           <div class="article-details">
-            <h3 class="post-title">{{ addressBook.firstName }} {{ addressBook.lastName }}</h3>
-            <p class="post-description">{{ addressBook.phoneNumber }}</p>
-            <h4 class="post-category">{{ addressBook.email }}</h4>
-            <h4 class="post-notes">ABOUT: {{ addressBook.notes }}</h4>
+            <h3 class="card-name">{{ addressBook.firstName }} {{ addressBook.lastName }}</h3>
+            <p class="card-number">{{ addressBook.phoneNumber }}</p>
+            <h4 class="card-email">{{ addressBook.email }}</h4>
+            <h4 class="card-notes">ABOUT: {{ addressBook.notes }}</h4>
           </div>
           <button class="card-button">
             <i
               class="material-icons card-edit"
               aria-hidden="true"
-              v-on:click="fetchAddressToEdit(addressBook._id)"
+              v-on:click="fetchAddressById(addressBook._id)"
             >create</i>
             <i
               class="material-icons card-delete"
               aria-hidden="true"
-              v-on:click="deleteAddressBook(addressBook._id)"
+              v-on:click="deleteAddressById(addressBook._id)"
             >🚫</i>
           </button>
         </article>
@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import IMAGES from "./../static/images";
-import ModalComponent from "./ModalComponent";
-import { fetchAddressToEdit, deleteAddressBook } from "./../utils";
+import IMAGES from "./../../static/images";
+import ModalComponent from "./../ModalComponent/ModalComponent";
+import { fetchAddressById, deleteAddressById } from "./../../utils";
 
 export default {
   name: "CardComponent",
@@ -79,13 +79,13 @@ export default {
     }
   },
   methods: {
-    fetchAddressToEdit: async function(id) {
-      const { address } = await fetchAddressToEdit({ id });
+    fetchAddressById: async function(id) {
+      const { address } = await fetchAddressById({ id });
       this.addressToBeUpdated = address;
       this.showModal = true;
     },
-    deleteAddressBook: async function(id) {
-      const isDeleteSuccess = await deleteAddressBook({ id });
+    deleteAddressById: async function(id) {
+      const isDeleteSuccess = await deleteAddressById({ id });
       if (isDeleteSuccess) this.$emit("refetchData", true);
     },
     enableShowModal() {
@@ -100,5 +100,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "./../assets/styles/CardComponent.scss";
+@import "./CardComponent.scss";
 </style>

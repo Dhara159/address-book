@@ -11,7 +11,7 @@ const validations = {
   email: { required, email },
   phoneNumber: {
     validNumber(phoneNumber) {
-      return /^(\+\d{1,3}[- ]?)?\d{10}$/.test(
+      return /^[6-9]\d{9}$/.test(
         phoneNumber
       );
     }

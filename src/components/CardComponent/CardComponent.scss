@@ -8,6 +8,10 @@ $white: #fff;
 $red: #e04f62;
 $border: #ebebeb;
 $shadow: rgba(0, 0, 0, 0.2);
+$button: #bbb;
+$hoverColor: #ff7f50;
+$iconBorder: #1E152A;
+$bigPlus: '\FF0B';
 
 @mixin transition($args...) {
   transition: $args;
@@ -23,13 +27,14 @@ $shadow: rgba(0, 0, 0, 0.2);
   backface-visibility: hidden;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
+
+  &:hover {
+    transform: perspective(1px) scale(1.05)
+  }
 }
 
-#card-container:hover {
-  transform: perspective(1px) scale(1.05)
-}
 
-.blog-card {
+.card {
   display: flex;
   flex-direction: row;
   background: $white;
@@ -43,17 +48,17 @@ $shadow: rgba(0, 0, 0, 0.2);
   display: block;
   color: inherit;
   text-decoration: none;
-  &:hover .post-title {
+  &:hover .card-name {
     @include transition(color 0.3s ease);
     color: $red;
   }
-  &:hover .post-image {
+  &:hover .card-image {
     @include transition(opacity 0.3s ease);
     opacity: 0.9;
   }
 }
 
-.post-image {
+.card-image {
   @include transition(opacity 0.3s ease);
   display: block;
   width: 100%;
@@ -64,7 +69,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
 }
 
-.post-category {
+.card-email {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
@@ -73,13 +78,13 @@ $shadow: rgba(0, 0, 0, 0.2);
   padding: 0 0 0.25rem 0;
 }
 
-.post-notes {
+.card-notes {
   font-size: 0.75rem;
   line-height: 1.3;
   letter-spacing: 0.0625rem;
 }
 
-.post-title {
+.card-name {
   @include transition(color 0.3s ease);
   font-size: 1.125rem;
   line-height: 1.4;
@@ -103,7 +108,7 @@ $shadow: rgba(0, 0, 0, 0.2);
     height: 27.25rem;
   }
 
-  .blog-card {
+  .card {
     flex-wrap: wrap;
   }
 }
@@ -123,18 +128,18 @@ $shadow: rgba(0, 0, 0, 0.2);
     justify-self: center;
   }
 
-  .post-image {
+  .card-image {
     height: 100%;
   }
 
-  .blog-card {
+  .card {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
   }
 
   @media (max-width: 40rem) {
-    .blog-card {
+    .card {
       grid-template-columns: auto;
       grid-template-rows: 12rem 1fr;
     }
@@ -149,7 +154,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   user-select: none;
   background: transparent;
   border-radius: .2em;
-  color: #bbb;
+  color: $button;
   padding: .25em;
   position: absolute;
   right: .3em;
@@ -169,21 +174,21 @@ $shadow: rgba(0, 0, 0, 0.2);
 .card-edit {
   &:hover,
   &:focus {
-    color: coral;
+    color: $hoverColor;
   }
 }
 
 .card-delete {
-  font-size: small;
+  font-size: x-small;
   padding: inherit;
 }
 
 .card-expander {
-  background: white;
+  background: $white;
   border-radius: 50%;
   box-shadow: 0 0 .75em 0 rgba(#abbaab, .55);
   bottom: 0;
-  color: coral;
+  color: $hoverColor;
   font-size: 1.5em;
   left: 50%;
   padding: .5em;
@@ -198,8 +203,8 @@ $shadow: rgba(0, 0, 0, 0.2);
 }
 
 .card-expander--is-open {
-  background: coral;
-  color: white;
+  background: $hoverColor;
+  color: $white;
   transform: translate3d(-50%, 50%, 0) rotate(-225deg);
 
   &:hover,
@@ -224,11 +229,11 @@ $shadow: rgba(0, 0, 0, 0.2);
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 3px solid #1E152A;
+  border: 3px solid $iconBorder;
   font-size: 40px;
-  color: #1E152A;
+  color: $iconBorder;
 }
 
 #bigplus:before {
-  content: '\FF0B';
+  content: $bigPlus;
 }

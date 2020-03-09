@@ -4,10 +4,15 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="header">
-            <span href="#" class="close-button align-right" aria-hidden="true" v-on:click="closeModal"></span>
+            <span
+              href="#"
+              class="close-button align-right"
+              aria-hidden="true"
+              v-on:click="closeModal"
+            ></span>
           </div>
           <div>
-            <form id="createContainer" @submit.prevent="addOrUpdateAddressBook" novalidate>
+            <form id="createContainer" @submit.prevent="addOrUpdateAddress" novalidate>
               <div class="row">
                 <div class="col-md-6">
                   <firstname-component v-model="firstName" :v="$v.firstName" />
@@ -46,14 +51,14 @@
 </template>
 
 <script>
-import validations from "./../validator";
-import { addAddressBook, updateAddressBook } from "./../utils";
-import FirstnameComponent from "./../components/FirstnameComponent";
-import LastnameComponent from "./../components/LastnameComponent";
-import EmailComponent from "./../components/EmailComponent";
-import PhonenumberComponent from "./../components/PhonenumberComponent";
-import NotesComponent from "./../components/NotesComponent";
-import DateComponent from "./../components/DateComponent";
+import validations from "./../../validator";
+import { addAddress, updateAddressById } from "./../../utils";
+import FirstnameComponent from "./../FirstnameComponent/FirstnameComponent";
+import LastnameComponent from "./../LastnameComponent/LastnameComponent";
+import EmailComponent from "./../EmailComponent/EmailComponent";
+import PhonenumberComponent from "./../PhonenumberComponent/PhonenumberComponent";
+import NotesComponent from "./../NotesComponent/NotesComponent";
+import DateComponent from "./../DateComponent/DateComponent";
 export default {
   name: "ModalComponent",
   components: {
@@ -88,9 +93,9 @@ export default {
   },
   validations,
   methods: {
-    addOrUpdateAddressBook: async function() {
+    addOrUpdateAddress: async function() {
       if (this.isUpdateState === true) {
-        await updateAddressBook({
+        await updateAddressById({
           v: this.$v,
           userData: {
             firstName: this.firstName,
@@ -103,7 +108,7 @@ export default {
           id: this.addressBook._id
         });
       } else {
-        await addAddressBook({
+        await addAddress({
           v: this.$v,
           userData: {
             firstName: this.firstName,
@@ -115,7 +120,7 @@ export default {
           }
         });
       }
-      this.closeModal()
+      this.closeModal();
     },
     closeModal() {
       this.$emit("showModal", false);
@@ -124,92 +129,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  width: 45%;
-  margin: 0px auto;
-  padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
-.modal-enter {
-  opacity: 0;
-}
-
-.modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-.align-right {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0;
-}
-
-.ghost-button {
-  display: inline-block;
-  width: 200px;
-  padding: 8px;
-  color: #fff;
-  border: rgba(0, 0, 0, 0.8);
-  background-color: rgba(0, 0, 0, 0.8);
-  text-align: center;
-  outline: none;
-  text-decoration: none;
-  transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
-}
-
-.ghost-button:hover,
-.ghost-button:active {
-  color: rgba(0, 0, 0, 0.8);
-  background-color: #fff;
-  border: 0.5px solid rgba(0, 0, 0, 0.8);
-  transition: background-color 0.2s ease-in, border-color 0.2s ease-in;
-}
-
-.material-icons {
-  font-size: inherit;
-}
-
-.close-button {
-  cursor: pointer
-}
-
-.close-button:after {
-  content: "✖︎"
-}
+<style scoped lang="scss">
+  @import "./ModalComponent.scss";
 </style>

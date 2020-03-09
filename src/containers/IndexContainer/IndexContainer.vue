@@ -16,53 +16,49 @@
         />
       </div>
     </div>
+    <div>
+      <error-modal-component
+        v-on:showErrorModal="toggleShowErrorModal"
+        v-if="showErrorModal === true"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { fetchAllAddresses, deleteAddressBook } from "./../utils";
-import CardComponent from "./../components/CardComponent";
+import { fetchAllAddresses, deleteAddressById } from "./../../utils";
+import CardComponent from "./../../components/CardComponent/CardComponent";
+import ErrorModalComponent from "./../../components/ModalComponent/ErrorModalComponent";
 
 export default {
-  components: { CardComponent },
+  components: { CardComponent, ErrorModalComponent },
   data() {
     return {
-      addressBook: []
+      addressBook: [],
+      showErrorModal: false
     };
   },
   async created() {
-    const { addressBook } = await fetchAllAddresses();
-    this.addressBook = addressBook || [];
+    this.fetchAllAddresses();
   },
   methods: {
-    deleteAddressBook: async function(id) {
-      const isDeleteSuccess = await deleteAddressBook(id);
+    deleteAddressById: async function(id) {
+      const isDeleteSuccess = await deleteAddressById(id);
       if (isDeleteSuccess)
         this.addressBook.splice(this.addressBook.indexOf(id), 1);
     },
     fetchAllAddresses: async function() {
       const { addressBook } = await fetchAllAddresses();
+      if (!addressBook) this.showErrorModal = true;
       this.addressBook = addressBook || [];
+    },
+    toggleShowErrorModal() {
+      this.showErrorModal = false;
     }
   }
 };
 </script>
 
-<style lang="sass" scoped>
-.card-list
-  width: 85vw
-  margin: 0 auto
-  display: grid
-  grid-template-columns: 1fr 1fr 1fr
-  grid-gap: 20px
-
-.pen-title
-  padding: 50px 0 0 0
-  text-align: center
-  letter-spacing: 2px
-
-  h1
-    margin: 0 0 20px
-    font-size: 48px
-    font-weight: 300
+<style scoped lang="scss">
+@import "./IndexContainer.scss";
 </style>
