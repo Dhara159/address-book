@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
-// Define colection and schema for Address book
+// ☞ Define colection and schema for Address book
 const addressBook = new Schema({
   id: {
     type: Number
@@ -24,11 +24,11 @@ const addressBook = new Schema({
   dob: {
     type: Date
   },
-},{
-    collection: 'address_book'
+}, {
+  collection: 'address_book'
 });
 
-// Object to be used to interact with model
+// ☞ Object to be used to interact with model
 const addressBookModel = mongoose.model('addressBook', addressBook);
 
 export default addressBookModel;
