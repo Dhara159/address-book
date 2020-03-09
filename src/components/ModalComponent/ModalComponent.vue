@@ -8,7 +8,7 @@
               href="#"
               class="close-button align-right"
               aria-hidden="true"
-              v-on:click="closeModal"
+              v-on:click="closeModal('closeByUser')"
             ></span>
           </div>
           <div>
@@ -38,9 +38,14 @@
                 </div>
               </div>
               <br />
-              <div class="form-group align-right">
-                <button v-if="isUpdateState === true" class="ghost-button">Update</button>
-                <button v-if="isUpdateState === false" class="ghost-button">Create</button>
+              <div class="form-group">
+                <div>
+                  <span class="error" v-if="showErrorText">errorMessage</span>
+                </div>
+                <div class="align-right">
+                  <button v-if="isUpdateState === true" class="ghost-button">Update</button>
+                  <button v-if="isUpdateState === false" class="ghost-button">Create</button>
+                </div>
               </div>
             </form>
           </div>
@@ -88,14 +93,17 @@ export default {
       phoneNumber: this.addressBook.phoneNumber,
       notes: this.addressBook.notes,
       dob: this.addressBook.dob,
-      isUpdateState: this.isUpdate
+      isUpdateState: this.isUpdate,
+      showErrorText: false,
+      errorMessage: "Oops! Something went wrong! Please try again!"
     };
   },
   validations,
   methods: {
     addOrUpdateAddress: async function() {
+      let isUpdated;
       if (this.isUpdateState === true) {
-        await updateAddressById({
+        isUpdated = await updateAddressById({
           v: this.$v,
           userData: {
             firstName: this.firstName,
@@ -108,7 +116,7 @@ export default {
           id: this.addressBook._id
         });
       } else {
-        await addAddress({
+        isUpdated = await addAddress({
           v: this.$v,
           userData: {
             firstName: this.firstName,
@@ -120,15 +128,16 @@ export default {
           }
         });
       }
-      this.closeModal();
+      if (!isUpdated) this.showErrorText = true;
+      else this.closeModal("dataUpdated");
     },
-    closeModal() {
-      this.$emit("showModal", false);
+    closeModal(event) {
+      this.$emit("dataUpdate", event === "dataUpdated" ? true : false);
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-  @import "./ModalComponent.scss";
+@import "./ModalComponent.scss";
 </style>

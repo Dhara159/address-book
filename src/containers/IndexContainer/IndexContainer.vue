@@ -18,7 +18,7 @@
     </div>
     <div>
       <error-modal-component
-        v-on:showErrorModal="toggleShowErrorModal"
+        v-on:showErrorModal="hideErrorModal"
         v-if="showErrorModal === true"
       />
     </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { fetchAllAddresses, deleteAddressById } from "./../../utils";
+import { fetchAllAddresses } from "./../../utils";
 import CardComponent from "./../../components/CardComponent/CardComponent";
 import ErrorModalComponent from "./../../components/ModalComponent/ErrorModalComponent";
 
@@ -42,17 +42,12 @@ export default {
     this.fetchAllAddresses();
   },
   methods: {
-    deleteAddressById: async function(id) {
-      const isDeleteSuccess = await deleteAddressById(id);
-      if (isDeleteSuccess)
-        this.addressBook.splice(this.addressBook.indexOf(id), 1);
-    },
     fetchAllAddresses: async function() {
       const { addressBook } = await fetchAllAddresses();
       if (!addressBook) this.showErrorModal = true;
       this.addressBook = addressBook || [];
     },
-    toggleShowErrorModal() {
+    hideErrorModal() {
       this.showErrorModal = false;
     }
   }

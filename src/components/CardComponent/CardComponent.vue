@@ -2,7 +2,7 @@
   <div>
     <div id="card-container">
       <div class="card-link">
-        <div v-if="newAddress === true" v-on:click="enableShowModal()" class="card" id="wrap">
+        <div v-if="newAddress === true" v-on:click="showModal()" class="card" id="wrap">
           <div class="icon" id="bigplus"></div>
         </div>
         <article v-if="newAddress === false" class="card">
@@ -28,27 +28,32 @@
         </article>
       </div>
     </div>
-    <modal-component
-      v-on:showModal="toggleShowModal"
-      v-bind:isUpdate="!newAddress"
-      v-bind:addressBook="addressToBeUpdated"
-      v-if="showModal === true"
-    />
+    <div class="modals">
+      <modal-component
+        v-on:dataUpdate="hideFormModal"
+        v-bind:isUpdate="!newAddress"
+        v-bind:addressBook="addressToBeUpdated"
+        v-if="showFormModal === true"
+      />
+      <error-modal-component v-on:showErrorModal="hideErrorModal" v-if="showErrorModal === true" />
+    </div>
   </div>
 </template>
 
 <script>
 import IMAGES from "./../../static/images";
 import ModalComponent from "./../ModalComponent/ModalComponent";
+import ErrorModalComponent from "./../../components/ModalComponent/ErrorModalComponent";
 import { fetchAddressById, deleteAddressById } from "./../../utils";
 
 export default {
   name: "CardComponent",
-  components: { ModalComponent },
+  components: { ModalComponent, ErrorModalComponent },
   data() {
     return {
       images: IMAGES,
-      showModal: false,
+      showFormModal: false,
+      showErrorModal: false,
       addressToBeUpdated: {
         firstName: "",
         lastName: "",
@@ -81,19 +86,23 @@ export default {
   methods: {
     fetchAddressById: async function(id) {
       const { address } = await fetchAddressById({ id });
-      this.addressToBeUpdated = address;
-      this.enableShowModal();
+      if (!address) this.showErrorModal = true;
+      else {
+        this.addressToBeUpdated = address;
+        this.showModal();
+      }
     },
     deleteAddressById: async function(id) {
       const isDeleteSuccess = await deleteAddressById({ id });
       if (isDeleteSuccess) this.$emit("refetchData", true);
+      else this.showErrorModal = true;
     },
-    enableShowModal() {
-      this.showModal = true;
+    showModal() {
+      this.showFormModal = true;
     },
-    toggleShowModal() {
-      this.showModal = false;
-      this.$emit("refetchData", true);
+    hideFormModal(event) {
+      this.showFormModal = false;
+      event ? this.$emit("refetchData", true) : null;
     }
   }
 };
