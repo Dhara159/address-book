@@ -80,14 +80,13 @@ export default {
   },
   methods: {
     fetchAddressToEdit: async function(id) {
-      const addressBook = await fetchAddressToEdit({ id });
-      this.addressToBeUpdated = addressBook;
+      const { address } = await fetchAddressToEdit({ id });
+      this.addressToBeUpdated = address;
       this.showModal = true;
     },
     deleteAddressBook: async function(id) {
       const isDeleteSuccess = await deleteAddressBook({ id });
       if (isDeleteSuccess) this.$emit("refetchData", true);
-      // this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
     },
     enableShowModal() {
       this.showModal = true;

@@ -9,8 +9,7 @@
 export default {
   props: {
     value: {
-      type: String,
-      default: undefined
+      type: String
     },
   },
   computed: {

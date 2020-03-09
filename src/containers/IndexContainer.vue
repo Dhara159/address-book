@@ -7,9 +7,13 @@
     </div>
     <br />
     <div class="card-list">
-      <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress=true />
-      <div v-for="addressBook in addressBooks" :key="addressBook._id">
-        <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress=false v-bind:addressBook="addressBook" />
+      <CardComponent v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress="true" />
+      <div v-for="address in addressBook" :key="address._id">
+        <CardComponent
+          v-on:refetchData="fetchAllAddresses"
+          v-bind:isNewAddress="false"
+          v-bind:addressBook="address"
+        />
       </div>
     </div>
   </div>
@@ -23,22 +27,22 @@ export default {
   components: { CardComponent },
   data() {
     return {
-      addressBooks: []
+      addressBook: []
     };
   },
   async created() {
-    const addressBooks = await fetchAllAddresses();
-    this.addressBooks = addressBooks || [];
+    const { addressBook } = await fetchAllAddresses();
+    this.addressBook = addressBook || [];
   },
   methods: {
     deleteAddressBook: async function(id) {
       const isDeleteSuccess = await deleteAddressBook(id);
       if (isDeleteSuccess)
-        this.addressBooks.splice(this.addressBooks.indexOf(id), 1);
+        this.addressBook.splice(this.addressBook.indexOf(id), 1);
     },
     fetchAllAddresses: async function() {
-      const addressBooks = await fetchAllAddresses();
-      this.addressBooks = addressBooks || [];
+      const { addressBook } = await fetchAllAddresses();
+      this.addressBook = addressBook || [];
     }
   }
 };

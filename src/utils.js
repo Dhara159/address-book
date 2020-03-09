@@ -5,7 +5,6 @@ const addAddressBook = async ({ v, userData }) => {
   if (v.$invalid) {
     return;
   }
-
   let uri = "http://localhost:4000/addressBook/add";
   return await axios.post(uri, userData);
 }
@@ -13,7 +12,7 @@ const addAddressBook = async ({ v, userData }) => {
 const fetchAddressToEdit = async ({ id }) => {
   const uri = `http://localhost:4000/addressBook/edit/${id}`;
   const res = await axios.get(uri);
-  if (res.status === 200) return res.data.addressBook;
+  if (res.status === 200) return res.data;
   else alert("Something went wrong");
 }
 
@@ -30,7 +29,7 @@ const updateAddressBook = async ({ v, userData, id }) => {
 const fetchAllAddresses = async () => {
   let uri = "http://localhost:4000/addressBook";
   const res = await axios.get(uri);
-  if (res.status === 200) return res.data.data;
+  if (res.status === 200) return res.data;
 }
 
 const deleteAddressBook = async ({ id }) => {

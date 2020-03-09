@@ -11,10 +11,10 @@ export const fetchAllAddresses = async () => await addressBookModel.find({}).sor
 export const fetchAddressById = async ({ id }) => await addressBookModel.findById(id);
 
 export const updateAddressById = async ({ id, address }) => {
-  const addressFound = await fetchAddressById(id);
+  const addressFound = await fetchAddressById({ id });
   if (!addressFound) return false;
-  const updatedAddress = { ...addressFound, ...address };
-  return await updatedAddress.save();
+  Object.entries(address).map(eachKey => addressFound[eachKey[0]] = eachKey[1]);
+  return await addressFound.save();
 }
 
 export const deleteAddressById = async ({ id }) => await addressBookModel.findByIdAndRemove({ _id: id });

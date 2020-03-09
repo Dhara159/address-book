@@ -10,7 +10,7 @@ const addressBookRoutes = express.Router();
 addressBookRoutes.post('/add', async ({ body: address }, res) => {
   try {
     const newAddress = await createAddress({ address });
-    return sendSuccessResponse({ res, status: HttpStatus.CREATED, resObj: { message: 'New address created', data: newAddress } });
+    return sendSuccessResponse({ res, status: HttpStatus.CREATED, resObj: { message: 'New address created', address: newAddress } });
   } catch {
     return sendErrorResponse({ res });
   }
@@ -19,8 +19,8 @@ addressBookRoutes.post('/add', async ({ body: address }, res) => {
 // ☞ Route to fetch all addresses
 addressBookRoutes.get('/', async (req, res) => {
   try {
-    const allAddresses = await fetchAllAddresses();
-    return sendSuccessResponse({ res, status: HttpStatus.OK, resObj: { data: allAddresses } });
+    const addressBook = await fetchAllAddresses();
+    return sendSuccessResponse({ res, status: HttpStatus.OK, resObj: { addressBook } });
   } catch {
     return sendErrorResponse({ res });
   }
@@ -30,7 +30,7 @@ addressBookRoutes.get('/', async (req, res) => {
 addressBookRoutes.get('/edit/:id', async ({ params: { id } }, res) => {
   try {
     const address = await fetchAddressById({ id });
-    return sendSuccessResponse({ res, status: address ? HttpStatus.OK : HttpStatus.NO_CONTENT, resObj: { data: address || {} } });
+    return sendSuccessResponse({ res, status: address ? HttpStatus.OK : HttpStatus.NO_CONTENT, resObj: { address: address || {} } });
   } catch {
     return sendErrorResponse({ res });
   }
@@ -40,7 +40,7 @@ addressBookRoutes.get('/edit/:id', async ({ params: { id } }, res) => {
 addressBookRoutes.post('/update/:id', async ({ params: { id }, body: address }, res) => {
   try {
     const updatedAddress = await updateAddressById({ id, address });
-    return sendSuccessResponse({ res, status: updatedAddress ? HttpStatus.OK : HttpStatus.NO_CONTENT, resObj: { data: updatedAddress || {} } });
+    return sendSuccessResponse({ res, status: updatedAddress ? HttpStatus.OK : HttpStatus.NO_CONTENT, resObj: { address: updatedAddress || {} } });
   } catch {
     return sendErrorResponse({ res });
   }
