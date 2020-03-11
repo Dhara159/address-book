@@ -2,22 +2,34 @@
 
 ## Project setup
 ```
-yarn install
+setup database and update database connection string in .env
+```
+
+## For Frontend
+```
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+npm run build
 ```
 
 ### Lints and fixes files
 ```
-yarn lint
+npm run lint
+```
+
+### For Backend
+```
+Go to api folder
+npm install
+npm run devclea
 ```
 
 ### Customize configuration
