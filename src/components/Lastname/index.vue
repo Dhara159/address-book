@@ -21,10 +21,12 @@
 
 <script>
 export default {
+  name: 'Lastname',
   props: {
     value: {
       type: String,
-      default: ""
+      default: "",
+      required: false
     },
     v: {
       type: Object,

@@ -16,7 +16,8 @@ const validations = {
       );
     }
   },
-  notes: { maxLength: maxLength(50) }
+  notes: { maxLength: maxLength(15) },
+  dob: { required }
 };
 
 export default validations;

@@ -34,7 +34,7 @@
                   <Notes v-model="notes" :v="$v.notes" />
                 </div>
                 <div class="col-md-6">
-                  <Date v-model="dob" />
+                  <Date v-model="dob" :v="$v.dob" />
                 </div>
               </div>
               <br />
@@ -43,8 +43,8 @@
                   <span class="error" v-if="showErrorText">errorMessage</span>
                 </div>
                 <div class="align-right">
-                  <button v-if="isUpdateState === true" class="ghost-button">Update</button>
-                  <button v-if="isUpdateState === false" class="ghost-button">Create</button>
+                  <button id='update-button' v-if="isUpdateState === true" class="ghost-button">Update</button>
+                  <button id='create-button' v-if="isUpdateState === false" class="ghost-button">Create</button>
                 </div>
               </div>
             </form>
@@ -77,7 +77,7 @@ export default {
   props: {
     addressBook: {
       type: Object,
-      required: false
+      required: false,
     },
     isUpdate: {
       type: Boolean,

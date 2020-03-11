@@ -7,7 +7,7 @@
     </div>
     <br />
     <div class="card-list">
-      <Card v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress="true" />
+      <Card id="add-address" v-on:refetchData="fetchAllAddresses" v-bind:isNewAddress="true" />
       <div v-for="address in addressBook" :key="address._id">
         <Card
           v-on:refetchData="fetchAllAddresses"
@@ -18,6 +18,7 @@
     </div>
     <div>
       <ErrorModal
+        id="error-modal"
         v-on:showErrorModal="hideErrorModal"
         v-if="showErrorModal === true"
       />
@@ -31,6 +32,7 @@ import Card from "./../../components/Card";
 import ErrorModal from "./../../components/Modal/ErrorModal";
 
 export default {
+  name: 'Index',
   components: { Card, ErrorModal },
   data() {
     return {
@@ -39,7 +41,7 @@ export default {
     };
   },
   async created() {
-    this.fetchAllAddresses();
+    await this.fetchAllAddresses();
   },
   methods: {
     fetchAllAddresses: async function() {
