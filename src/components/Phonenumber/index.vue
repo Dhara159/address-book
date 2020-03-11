@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Phonenumber',
+  name: 'PhoneNumber',
   props: {
     value: {
       type: String,

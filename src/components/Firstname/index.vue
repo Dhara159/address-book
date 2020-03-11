@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'Firstname',
+  name: 'FirstName',
   props: {
     value: {
       type: String,

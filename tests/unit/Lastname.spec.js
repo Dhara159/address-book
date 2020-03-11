@@ -1,12 +1,12 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Lastname from './../../src/components/Lastname';
+import LastName from './../../src/components/LastName';
 
 const localVue = createLocalVue();
 
 let wrapper;
 
 beforeEach(() => {
-  wrapper = shallowMount(Lastname, {
+  wrapper = shallowMount(LastName, {
     localVue,
     propsData: {
       value: '',
@@ -17,7 +17,7 @@ beforeEach(() => {
   });
 });
 
-describe('Firstname.vue', () => {
+describe('LastName.vue', () => {
   test('is a Vue instance', () => {
     expect(wrapper.isVueInstance).toBeTruthy();
   });

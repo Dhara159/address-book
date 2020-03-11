@@ -15,10 +15,10 @@
             <form id="createContainer" @submit.prevent="addOrUpdateAddress">
               <div class="row">
                 <div class="col-md-6">
-                  <Firstname v-model="firstName" :v="$v.firstName" />
+                  <FirstName v-model="firstName" :v="$v.firstName" />
                 </div>
                 <div class="col-md-6">
-                  <Lastname v-model="lastName" :v="$v.lastName" />
+                  <LastName v-model="lastName" :v="$v.lastName" />
                 </div>
               </div>
               <div class="row">
@@ -26,7 +26,7 @@
                   <Email v-model="email" :v="$v.email" />
                 </div>
                 <div class="col-md-6">
-                  <Phonenumber v-model="phoneNumber" :v="$v.phoneNumber" />
+                  <PhoneNumber v-model="phoneNumber" :v="$v.phoneNumber" />
                 </div>
               </div>
               <div class="row">
@@ -66,19 +66,19 @@
 <script>
 import validations from "./../../validator";
 import { addAddress, updateAddressById } from "./../../utils";
-import Firstname from "./../Firstname";
-import Lastname from "./../Lastname";
+import FirstName from "./../FirstName";
+import LastName from "./../LastName";
 import Email from "./../Email";
-import Phonenumber from "./../Phonenumber";
+import PhoneNumber from "./../PhoneNumber";
 import Notes from "./../Notes";
 import Date from "./../Date";
 export default {
   name: "Modal",
   components: {
-    Firstname,
-    Lastname,
+    FirstName,
+    LastName,
     Email,
-    Phonenumber,
+    PhoneNumber,
     Notes,
     Date
   },

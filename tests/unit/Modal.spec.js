@@ -57,7 +57,7 @@ describe('Modal.vue', () => {
   });
 
   test('are all input fields rendered', () => {
-    const modals = ['Firstname', 'Lastname', 'Email', 'Notes', 'Phonenumber', 'Date'];
+    const modals = ['FirstName', 'LastName', 'Email', 'Notes', 'PhoneNumber', 'Date'];
     modals.forEach(eachModal => {
       expect(wrapper.name(eachModal)).toBeTruthy();
     });
