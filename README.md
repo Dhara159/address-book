@@ -33,4 +33,10 @@ npm run devclea
 ```
 
 ### Customize configuration
+```
 See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+
+### Test output
+
+![alt text](https://i.postimg.cc/mrCSVBV1/Screenshot-2020-03-12-at-3-20-26-AM.png)
