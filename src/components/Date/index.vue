@@ -10,12 +10,11 @@
 
 <script>
 export default {
-  name: 'Date',
+  name: "Date",
   props: {
     value: {
       type: String,
       required: false,
-      default: ''
     },
     v: {
       type: Object,

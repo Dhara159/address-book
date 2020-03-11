@@ -9,6 +9,7 @@ $shadow: rgba(0, 0, 0, 0.2);
 $button: #bbb;
 $hoverColor: #ff7f50;
 $iconBorder: #1e152a;
+$newAddressBg: rgba(145, 168, 164, 0.5);
 $bigPlus: "\FF0B";
 $delete: "\01F6AB";
 $weight: 700;
@@ -142,7 +143,8 @@ $weight: 700;
   justify-content: center;
   min-height: 150px;
   text-align: center;
-  background-color: #91a8a4;
+  background-color: $newAddressBg;
+  border:1px solid $newAddressBg;
 }
 
 .icon:before {

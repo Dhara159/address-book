@@ -22,7 +22,7 @@ const addressBook = new Schema({
     type: String
   },
   dob: {
-    type: Date
+    type: String
   },
 }, {
   collection: 'address_book'

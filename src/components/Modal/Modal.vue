@@ -12,7 +12,7 @@
             ></span>
           </div>
           <div>
-            <form id="createContainer" @submit.prevent="addOrUpdateAddress" novalidate>
+            <form id="createContainer" @submit.prevent="addOrUpdateAddress">
               <div class="row">
                 <div class="col-md-6">
                   <Firstname v-model="firstName" :v="$v.firstName" />
@@ -43,8 +43,16 @@
                   <span class="error" v-if="showErrorText">errorMessage</span>
                 </div>
                 <div class="align-right">
-                  <button id='update-button' v-if="isUpdateState === true" class="ghost-button">Update</button>
-                  <button id='create-button' v-if="isUpdateState === false" class="ghost-button">Create</button>
+                  <button
+                    id="update-button"
+                    v-if="isUpdateState === true"
+                    class="ghost-button"
+                  >Update</button>
+                  <button
+                    id="create-button"
+                    v-if="isUpdateState === false"
+                    class="ghost-button"
+                  >Create</button>
                 </div>
               </div>
             </form>
@@ -77,7 +85,7 @@ export default {
   props: {
     addressBook: {
       type: Object,
-      required: false,
+      required: false
     },
     isUpdate: {
       type: Boolean,

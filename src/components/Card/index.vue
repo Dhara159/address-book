@@ -26,7 +26,7 @@
               <h3 class="card-name">{{ addressBook.firstName }} {{ addressBook.lastName }}</h3>
               <p class="card-number">{{ addressBook.phoneNumber }}</p>
               <h4 class="card-email">{{ addressBook.email }}</h4>
-              <h4 class="card-notes">ABOUT: {{ addressBook.notes }}</h4>
+              <h4 class="card-notes">ABOUT: {{ addressBook.notes || '--' }}</h4>
             </div>
           </div>
         </article>
