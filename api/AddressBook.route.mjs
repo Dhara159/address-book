@@ -1,7 +1,7 @@
 import express from 'express';
 import HttpStatus from 'http-status';
 
-import handleError from './helpers/ErrorHandler';
+import handleError from './helpers/ErrorHandler.mjs';
 import { createAddress, fetchAllAddresses, fetchAddressById, updateAddressById, deleteAddressById, sendSuccessResponse } from './utils.mjs';
 
 // ☞ Instance to be used to get access to different routes and perform CRUD

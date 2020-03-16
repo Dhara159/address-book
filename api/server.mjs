@@ -3,12 +3,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
-// import dotenv from 'dotenv'
 
 // ☞ Custom import
 import addressBookRoutes from './AddressBook.route.mjs';
 
-// dotenv.config()
 const app = express();
 const { PORT = 4000, DB, RECONNECT_TRIES, RECONNECT_INTERVAL } = process.env;
 
