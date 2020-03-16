@@ -29,7 +29,7 @@ npm run lint
 ```
 Go to api folder
 npm install
-npm run devclea
+npm run dev
 ```
 
 ### Customize configuration
